@@ -41,6 +41,7 @@ final class HexedCommands implements PluginListener {
     @Permission("com.xpdustry.hexed.start")
     public void onHexedStartCommand(
             final CommandSender sender, final @Argument(value = "generator") @Default("anuke") String name) {
+        if(!sender.isServer()) return;
         if (Vars.state.isGame()) {
             sender.error("Stop the server first.");
             return;
@@ -130,7 +131,8 @@ final class HexedCommands implements PluginListener {
     @Command("set counter <duration>")
     @CommandDescription("Set the time counter.")
     @Permission("com.xpdustry.hexed.set.counter")
-    public void onSetTimeCommand(final @Argument("duration") Duration duration) {
+    public void onSetTimeCommand(final CommandSender sender, final @Argument("duration") Duration duration) {
+        if(!sender.isServer()) return;
         HexedAPI.get().getHexedState().setCounter(duration);
     }
 
