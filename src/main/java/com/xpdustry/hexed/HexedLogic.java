@@ -54,7 +54,10 @@ final class HexedLogic implements PluginListener {
         if (!this.hexed.isEnabled()) {
             return;
         }
-        if (event.player().team().equals(Team.derelict)) {
+        if (event.player().team() == null) {
+             event.player().team(Team.derelict);
+        }
+        if (event.player().team() == null || event.player().team().equals(Team.derelict)) {
             event.player().team(Vars.netServer.assignTeam(event.player()));
         }
         if (event.player().team().equals(Team.derelict)) {
