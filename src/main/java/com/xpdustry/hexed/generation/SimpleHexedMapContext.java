@@ -23,6 +23,7 @@ public class SimpleHexedMapContext extends SimpleMapContext implements HexedMapC
         final var rules = this.getRules();
         Gamemode.pvp.apply(rules);
         rules.pvp = true;
+        rules.pvpAutoPause = false;
         rules.tags.put(HEXED_PRESENCE_FLAG, "true");
         rules.loadout = ItemStack.list(
                 Items.copper,
